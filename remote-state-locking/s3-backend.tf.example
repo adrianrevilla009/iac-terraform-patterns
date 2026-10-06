@@ -1,0 +1,10 @@
+# Replace the backend "local" block with this (Terraform >= 1.10 native S3 locking, no DynamoDB).
+# Point endpoints at LocalStack (http://localhost:4566) for a free run.
+terraform {
+  backend "s3" {
+    bucket       = "orders-tfstate"
+    key          = "orders/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true
+  }
+}
